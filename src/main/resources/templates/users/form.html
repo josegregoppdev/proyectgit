@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.id} ? 'Editar Usuario' : 'Nuevo Usuario'">Formulario</title>
+</head>
+<body>
+    <h1 th:text="${user.id} ? 'Editar Usuario' : 'Nuevo Usuario'">Formulario</h1>
+
+    <form th:action="${user.id} ? @{/users/{id}/edit(id=${user.id})} : @{/users}" method="post">
+        <div>
+            <label>Nombre:</label>
+            <input type="text" name="name" th:value="${user.name}" required>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" th:value="${user.email}" required>
+        </div>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/users}">Cancelar</a>
+    </form>
+</body>
+</html>

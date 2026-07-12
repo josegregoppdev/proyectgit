@@ -1,2 +1,5 @@
 /home/josepino/Escritorio/proyectgit/src/main/java/com/example/Application.java
 /home/josepino/Escritorio/proyectgit/src/main/java/com/example/controller/HelloController.java
+/home/josepino/Escritorio/proyectgit/src/main/java/com/example/controller/UserController.java
+/home/josepino/Escritorio/proyectgit/src/main/java/com/example/model/User.java
+/home/josepino/Escritorio/proyectgit/src/main/java/com/example/service/UserService.java
