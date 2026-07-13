@@ -1,4 +1,5 @@
 com/example/model/User.class
+com/example/controller/DashboardController.class
 com/example/Application.class
 com/example/controller/UserController.class
 com/example/service/UserService.class
