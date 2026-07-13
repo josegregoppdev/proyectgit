@@ -1,31 +1,32 @@
-# AGENTS.md - Proyecto Spring Boot
+# AGENTS.md - Proyecto Spring Boot (Práctica Git)
 
 ## Stack Tecnológico
 - Java 17
 - Spring Boot 3.3.0
 - Maven
 - Spring Web (Spring MVC embebido)
+- Thymeleaf
 
 ## Comandos útiles
 
 ### Ejecutar la aplicación
 ```bash
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 ### Ejecutar tests
 ```bash
-./mvnw test
+mvn test
 ```
 
 ### Compilar el proyecto
 ```bash
-./mvnw clean compile
+mvn clean compile
 ```
 
 ### Empaquetar (JAR)
 ```bash
-./mvnw clean package
+mvn clean package
 ```
 
 ## Estructura del proyecto
@@ -34,19 +35,20 @@ src/
 ├── main/
 │   ├── java/com/example/
 │   │   ├── Application.java           -- Clase principal
-│   │   ├── controller/                -- Controladores REST
+│   │   ├── controller/                -- Controladores MVC (@Controller)
 │   │   ├── model/                     -- Entidades/DTOs
 │   │   ├── repository/                -- Repositorios JPA
 │   │   └── service/                   -- Lógica de negocio
 │   └── resources/
 │       ├── application.properties     -- Configuración
 │       ├── static/                    -- Archivos estáticos
-│       └── templates/                 -- Plantillas (Thymeleaf, etc.)
+│       └── templates/
+│           └── users/                 -- Vistas Thymeleaf (list, form)
 └── test/java/com/example/
 ```
 
 ## Convenciones
-- Prefijo para beans: no usar prefijos (ej: `UserService`, no `userService`?)
-- Seguir convenciones estándar de Spring: inyección por constructor
-- Controladores REST con `@RestController`
+- Inyección por constructor
+- Controladores MVC con `@Controller`
+- Vistas Thymeleaf en `templates/<entidad>/`
 - Usar `@RequestMapping` a nivel de clase para prefijos de ruta
