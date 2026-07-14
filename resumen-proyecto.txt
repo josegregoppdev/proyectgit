@@ -1,0 +1,101 @@
+RESUMEN DEL PROYECTO - Sistema de Gestión de Usuarios
+=====================================================
+
+FECHA: Julio 2026
+TECNOLOGÍA: Spring Boot 3.3.0 + Thymeleaf + Bootstrap 5
+
+FUNCIONALIDADES IMPLEMENTADAS:
+-------------------------------
+
+1. DASHBOARD (Ruta: /)
+   - Panel principal con estadísticas en tiempo real
+   - Cards informativas:
+     * Total de usuarios registrados
+     * Estado del sistema
+     * Acciones rápidas (botón para nuevo usuario)
+   - Tabla de usuarios recientes con acceso directo a edición
+   - Diseño moderno con gradientes y efectos hover
+
+2. GESTIÓN DE USUARIOS (Ruta: /users)
+   - Listado completo de usuarios en tabla responsive
+   - Crear nuevo usuario (formulario con validación)
+   - Editar usuario existente
+   - Eliminar usuario con confirmación
+   - Iconos de Bootstrap para mejor UX
+
+3. NAVEGACIÓN
+   - Navbar fija superior presente en todas las vistas
+   - Enlaces principales:
+     * Dashboard (inicio)
+     * Usuarios (listado)
+     * Nuevo Usuario
+   - Fecha actual mostrada en el navbar
+   - Diseño responsive (adaptable a móviles)
+
+ESTRUCTURA DEL PROYECTO:
+-------------------------
+
+src/main/
+├── java/com/example/
+│   ├── Application.java                    -- Clase principal
+│   ├── controller/
+│   │   ├── DashboardController.java        -- Controlador del dashboard (/)
+│   │   ├── HelloController.java            -- Controlador de prueba (/hello)
+│   │   └── UserController.java             -- Gestión de usuarios (/users)
+│   ├── model/
+│   │   └── User.java                       -- Entidad Usuario (id, name, email)
+│   ├── repository/                         -- (preparado para JPA futuro)
+│   └── service/
+│       └── UserService.java                -- Lógica de negocio (almacenamiento en memoria)
+└── resources/
+    ├── application.properties              -- Configuración
+    ├── static/
+    │   └── css/
+    │       └── style.css                   -- Estilos personalizados (gradientes, cards, etc.)
+    └── templates/
+        ├── dashboard.html                  -- Vista del dashboard principal
+        ├── fragments/
+        │   └── navbar.html                 -- Fragmento reutilizable del navbar
+        └── users/
+            ├── list.html                   -- Listado de usuarios
+            └── form.html                   -- Formulario crear/editar usuario
+
+DISEÑO VISUAL:
+--------------
+- Bootstrap 5.3.0 para componentes responsive
+- Bootstrap Icons 1.11.0 para iconografía
+- Paleta de colores: Gradiente morado-azul (#667eea a #764ba2)
+- Cards con sombras y efectos de transición
+- Tablas con hover y badges de colores
+- Botones redondeados con animaciones
+
+ALMACENAMIENTO:
+---------------
+- Actualmente en memoria (ConcurrentHashMap)
+- Los datos se pierden al reiniciar la aplicación
+- Preparado para migrar a base de datos (JPA ready)
+
+COMANDOS PRINCIPALES:
+---------------------
+- Ejecutar aplicación: mvn spring-boot:run
+- Ejecutar tests: mvn test
+- Compilar: mvn clean compile
+- Empaquetar: mvn clean package
+
+ACCESOS:
+--------
+- Dashboard: http://localhost:8080/
+- Usuarios: http://localhost:8080/users
+- Nuevo usuario: http://localhost:8080/users/new
+- Editar usuario: http://localhost:8080/users/{id}/edit
+
+MEJORAS FUTURAS SUGERIDAS:
+--------------------------
+- Integrar base de datos (MySQL, PostgreSQL, H2)
+- Sistema de autenticación y autorización
+- Paginación en el listado de usuarios
+- Búsqueda y filtros
+- Gráficos en el dashboard (Chart.js)
+- Validaciones avanzadas en formularios
+- Mensajes flash para notificaciones
+- Exportar datos a PDF/Excel

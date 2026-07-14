@@ -1,45 +1,47 @@
 package com.example.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
 import com.example.model.User;
+import com.example.repository.UserRepository;
 
 @Service
 public class UserService {
 
-    private final Map<Long, User> users = new ConcurrentHashMap<>();
-    private final AtomicLong idCounter = new AtomicLong(1);
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public List<User> findAll() {
-        return new ArrayList<>(users.values());
+        return userRepository.findAll();
     }
 
     public Optional<User> findById(Long id) {
-        return Optional.ofNullable(users.get(id));
+        return userRepository.findById(id);
     }
 
     public User create(User user) {
-        user.setId(idCounter.getAndIncrement());
-        users.put(user.getId(), user);
-        return user;
+        return userRepository.save(user);
     }
 
     public Optional<User> update(Long id, User updated) {
-        return Optional.ofNullable(users.computeIfPresent(id, (key, existing) -> {
+        return userRepository.findById(id).map(existing -> {
             existing.setName(updated.getName());
             existing.setEmail(updated.getEmail());
-            return existing;
-        }));
+            return userRepository.save(existing);
+        });
     }
 
     public boolean deleteById(Long id) {
-        return users.remove(id) != null;
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }
